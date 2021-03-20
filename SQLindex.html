@@ -1,0 +1,256 @@
+ 
+<!DOCTYPE HTML>
+<html>
+<head>
+    
+    
+    
+
+
+  
+     
+     
+     <style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+
+
+
+
+
+
+<!-- Just a bit of CSS styling -->
+<style>
+  table, td, th {border: 1px solid black; border-collapse: collapse;}
+</style>
+
+<div class="banner-info" align="center">
+
+    <span><input id="Company" type="text" oninput="UpdateSQLTable();" class="text-center" required="" placeholder="Search Company Name"></span><br>
+
+    <span><input id="Posit" type="text" oninput="UpdateSQLTable();" class="text-center"  required="" placeholder="Search Position"></span><br>
+
+    <span><input id="Date" type="text" oninput="UpdateSQLTable();" class="text-center" required="" placeholder="Search Date Applied"></span><br>
+
+    <span><input id="Recruiter" type="text" oninput="UpdateSQLTable();" class="text-center" required="" placeholder="Search Recruiter Name"></span><br>
+
+    <span><input id="notes" type="text" oninput="UpdateSQLTable();" class="text-center" required="" placeholder="Search (Suspect) Notes"></span><br>
+    <p>
+    
+    
+</div>
+<div class="logo">
+   
+</div>
+
+
+
+<table id="t1">
+    
+    <colgroup>
+        <col span="2" class="c2">
+        <col>
+        <col class="c1">
+    </colgroup>
+    <thead>
+        <tr>
+          
+     <th>Company</th>
+    <th>Position</th>
+    <th>Date Applied</th>
+    <th>Recruiter / Consultant</th>
+    <th>Notes:</th>
+    <tbody id="insertionPoint">
+    
+        </tr>
+    </thead>
+  
+      
+    </tbody>
+</table>
+</p>
+<div id = "status" name = "status">Status Message</div> 
+<br>  
+<br>  
+<br>  
+<br>  
+<br>  
+<br>  
+
+<h1>Disclaimer:</h1>
+      <p style="font-weight: bold;">PLEASE NOTE: this is dummy data. I use a seperate personal link. Moreover, if there are any offensive terms in the table above, this was not put there by the author ... as it is possible to 'SQL inject' (hack) this database.  </p>
+      
+<div id = "status" name = "status">... Created by Benjamin Rhory Netherwood f.t. special appearance from our friend/heavy lifting SQL embedded function:</div> 
+ </p> 
+<div id = "status" name = "status"> > tx.executeSql('SELECT * FROM LOGS WHERE CompanyName like ' + keyword + ' AND Position like ' + keyword1 + ' AND DateApplied like ' + keyword2 + ' AND Recruiter like ' + keyword3 + ' AND Notes like ' + keyword4 + '', [], function (tx, results) </div>          
+      
+
+
+</head>
+
+     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    
+     <script type="text/javascript">
+     
+          var db = openDatabase('BRNsqlDataBSE', '1.0', 'Test DB', 2 * 1024 * 1024);
+          var msg;
+  db.transaction(function (tx)
+          {
+           tx.executeSql('CREATE TABLE IF NOT EXISTS LOGS (id unique, CompanyName, Position, DateApplied, Recruiter, Notes)'); 
+             
+               
+            <!-- tx.executeSql('INSERT INTO SUBJECTS (id, Company Name, Position, DateApplied, Recruiter, Notes) VALUES ("Company X", "Data Scientist", "1999-01-03", "Xavier", "Xmen, No Superpowers / shell company for xmen")'); -->
+                
+                
+                
+   tx.executeSql('INSERT INTO LOGS (id, CompanyName,Position, DateApplied, Recruiter, Notes) VALUES (1, "Company X", "Data Scientist", "1999-01-03", "Xavier", "No Superpowers / shell company for xmen")'); 
+   tx.executeSql('INSERT INTO LOGS (id, CompanyName,Position, DateApplied, Recruiter, Notes) VALUES (2, "Company Y", "Machine Learning Engineer", "1955-05-04", "Y person", "Shell company / illegal")'); 
+        tx.executeSql('INSERT INTO LOGS (id, CompanyName,Position, DateApplied, Recruiter, Notes) VALUES (3, "Null Company", "Null Scientist", "2044-02-01", "NULL", "No actual job")');     
+   
+             tx.executeSql('INSERT INTO LOGS (id, CompanyName,Position, DateApplied, Recruiter, Notes) VALUES (4, "BarbrahCo", "Data Scientist", "1999-09-01", "THE ONE & ONLY B ", "Good job, hateful CEO")');     
+             
+              tx.executeSql('INSERT INTO LOGS (id, CompanyName,Position, DateApplied, Recruiter, Notes) VALUES (5, "DeborahCorp", "BarbrahCo Rep", "2021-02-02", "NULL", "Bad Job - wanted the Barbrah one ...")');   
+              
+               tx.executeSql('INSERT INTO LOGS (id, CompanyName,Position, DateApplied, Recruiter, Notes) VALUES (6, "MicroNotSoft", "Intern", "2020-06-09", "Senior Intern", "Owner is also an intern")');   
+              
+            tx.executeSql('INSERT INTO LOGS (id, CompanyName,Position, DateApplied, Recruiter, Notes) VALUES (7, "BR", "Myself", "2022-02-12", "Mirror", "...")');   
+            
+              tx.executeSql('INSERT INTO LOGS (id, CompanyName,Position, DateApplied, Recruiter, Notes) VALUES (8, "SpaceZ", "Astronaut", "2001-01-12", "Elun Musk", "Space X rip off...")');   
+            
+                tx.executeSql('INSERT INTO LOGS (id, CompanyName,Position, DateApplied, Recruiter, Notes) VALUES (9, "Generic Disruptive Startup", "Data Guruuuu", "2011-01-01", "   ", "Literally No Pay...")'); 
+            
+             tx.executeSql('INSERT INTO LOGS (id, CompanyName,Position, DateApplied, Recruiter, Notes) VALUES (10, "SpaceK", "Science", "2021-02-07", "Elaine Musk", "Special K rip off")'); 
+            
+            
+            
+          });
+
+
+function UpdateSQLTable(){
+          db.transaction(function (tx)
+          {
+
+         
+                    var table = document.getElementById('t1').getElementsByTagName('tbody')[0];
+
+
+        var rowCnt = table.rows.length;        // GET TABLE ROW COUNT.
+      
+        var row = table.insertRow(rowCnt);
+        
+         for (i2 = 0; i2 < rowCnt; i2++)
+                    {
+                       document.getElementById("t1").deleteRow(1); 
+                    }
+                    
+                    
+var Cmp = document.getElementById("Company").value;                    
+var pos = document.getElementById("Posit").value;
+        var dat = document.getElementById("Date").value;
+        var rec = document.getElementById("Recruiter").value;
+        var nts = document.getElementById("notes").value;
+console.log(Cmp)
+   
+        var keyword = "\"%REPLACE%\""; 
+        var keyword = keyword.replace('REPLACE',Cmp);
+        
+        var keyword1 = "\"%REPLACE%\""; 
+        var keyword1 = keyword1.replace('REPLACE',pos);
+        
+        var keyword2 = "\"%REPLACE%\""; 
+        var keyword2 = keyword2.replace('REPLACE',dat);
+        
+        var keyword3 = "\"%REPLACE%\""; 
+        var keyword3 = keyword3.replace('REPLACE',rec);
+        
+        var keyword4 = "\"%REPLACE%\""; 
+        var keyword4 = keyword4.replace('REPLACE',nts);
+        
+      
+tx.executeSql('SELECT * FROM LOGS WHERE CompanyName like ' + keyword + ' AND Position like ' + keyword1 + ' AND DateApplied like ' + keyword2 + ' AND Recruiter like ' + keyword3 + ' AND Notes like ' + keyword4 + '', [], function (tx, results)
+               {
+
+                    var len = results.rows.length, i;
+           
+                    
+                    for (i = 0; i < len; i++)
+                    {
+                         
+                       
+   
+        
+
+
+     
+       
+   
+var table = document.getElementById('t1').getElementsByTagName('tbody')[0];
+
+
+        var rowCnt = table.rows.length;        // GET TABLE ROW COUNT.
+
+        var row = table.insertRow(rowCnt);   
+        
+  var cell1 = row.insertCell(0);
+  var cell2 = row.insertCell(1);
+   var cell3 = row.insertCell(0);
+  var cell4 = row.insertCell(1);
+   var cell5 = row.insertCell(0);
+  
+  cell1.innerHTML = results.rows.item(i).Recruiter;
+  cell2.innerHTML = results.rows.item(i).Notes;
+   cell3.innerHTML = results.rows.item(i).Position;
+  cell4.innerHTML = results.rows.item(i).DateApplied;
+   cell5.innerHTML = results.rows.item(i).CompanyName;
+
+
+        
+        
+                    }
+                    msg = '(Showing ' + len.toString() + ' of 10)';
+
+
+ document.querySelector('#status').innerHTML =  msg; 
+ 
+ 
+ 
+ 
+ 
+
+        
+        
+        
+               }, null);
+          });
+          
+}
+
+UpdateSQLTable()
+UpdateSQLTable()
+ 
+          </script>
+          
+</head>
+
+
+
+
+
+
+
+</html>
